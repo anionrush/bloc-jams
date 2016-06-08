@@ -1,4 +1,4 @@
-var points = document.getElementsByClassName('point');
+var pointsArray = document.getElementsByClassName('point');
 
 var animatePoints = function(points) {
     
@@ -14,11 +14,13 @@ var animatePoints = function(points) {
         points[point].style.transition = "1s";
         points[point].style.msTransition = "1s";
         points[point].style.WebkitTransition = "1s";    
-        }; 
+        };
     
-    for ( var i = 0; i <= points.length -1; i++){
-        revealPoint(i);
-        }
+    forEach(points, revealPoint);
+    
+//    for ( var i = 0; i <= points.length -1; i++){
+//        revealPoint(i);
+//        }
 };
 
 window.onload = function() {
@@ -28,6 +30,9 @@ window.onload = function() {
     var sellingPoints = document.getElementsByClassName('selling-points')[0];
     var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
     window.addEventListener('scroll', function(event) {
+        console.log("Current offset from the top is " + sellingPoints.getBoundingClientRect().top + " pixels and the body is " + document.body.scrollTop);
+        
+        
         if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
              animatePoints(pointsArray);   
          }
