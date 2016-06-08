@@ -27,6 +27,21 @@ var albumPicasso = {
      ]
  };
 
+ var albumExample = {
+     title: 'The Example',
+     artist: 'Example Example',
+     label: 'EX',
+     year: 'Example',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'Example?', duration: '1:01' },
+         { title: 'Example, ring, ring', duration: '5:01' },
+         { title: 'Fits in Example pocket', duration: '3:21'},
+         { title: 'Can Example hear me now?', duration: '3:14' },
+         { title: 'Wrong phone Example', duration: '2:15'}
+     ]
+ };
+
 
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -61,5 +76,17 @@ var setCurrentAlbum = function(album) {
  };
  
  window.onload = function() {
-     setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumExample];
+     var count = 0;
+     var albumChosen = albums[count%3];
+     setCurrentAlbum(albumChosen);
+     
+     document.getElementsByClassName('album-cover-art')[0].addEventListener("click", function(event){
+         count++;
+         setCurrentAlbum(albums[count%3]); 
+         console.log(count);
+     });
+     
+
  };
